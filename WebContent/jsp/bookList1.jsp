@@ -13,8 +13,8 @@ List<Book> list = BookDAO.findAll();
 <style>
 	div.container {width:600px; margin: 50px auto;}
 	table {border-collapse: collapse; width:100%;}
-	thead {text-weight: bold; text-align:center; background-color: lightgray;}
-	td {border:1px solid #eee; padding:4px;}
+	thead {text-weight: bold; text-align:center; background-color: #eee;}
+	td {border:1px solid lightgray; padding:4px;}
 </style>
 <body>
 <div class="container">

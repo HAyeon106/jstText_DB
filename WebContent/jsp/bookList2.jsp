@@ -17,7 +17,7 @@ List<Book> list = BookDAO.findByAuthor(srchText);
 	table {border-collapse: collapse; width:100%; margin-top:30px;}
 	thead {text-weight: bold; text-align:center; background-color: #eee;}
 	td {border:1px solid lightgray; padding:4px;}
-	button {width:100px;}
+	button {width:80px;}
 </style>
 <body>
 
