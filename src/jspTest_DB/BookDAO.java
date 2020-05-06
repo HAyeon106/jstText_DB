@@ -23,7 +23,7 @@ public class BookDAO {
 	public static List<Book> findAll() throws Exception{
 		String sql = "SELECT b.*, c.categoryName "
 				+ "FROM book b LEFT JOIN category c ON b.categoryId = c.id";
-		try(Connection connection = DB.getConnection("student1");
+		try(Connection connection = DB.getConnection("book");
 			 PreparedStatement statement = connection.prepareStatement(sql);
 			 ResultSet resultSet = statement.executeQuery()){
 			ArrayList<Book> list = new ArrayList<Book>();
@@ -33,29 +33,18 @@ public class BookDAO {
 		}
 	}
 	
-	public static List<Book> findByName(String name) throws Exception{
+	public static List<Book> findByAuthor(String author) throws Exception{
 		String sql= "SELECT b.*, c.categoryName "
-				+ "FROM book b LEFT JOIN category c ON b.categoryId = c.id";
-		try(Connection connection = DB.getConnection("student1");
+				+ "FROM book b LEFT JOIN category c ON b.categoryId = c.id "
+				+ "WHERE author LIKE ?";
+		try(Connection connection = DB.getConnection("book");
 			 PreparedStatement statement = connection.prepareStatement(sql)){
-			statement.setString(1, name+"%");
+			statement.setString(1, author+"%");
 			try(ResultSet resultSet = statement.executeQuery()) {
 				ArrayList<Book> list = new ArrayList<Book>();
 				while(resultSet.next())
 					list.add(getBookFrom(resultSet));
 				return list;
-			}
-		}
-	}
-	
-	public static Book findById(int id) throws Exception{
-		String sql= "SELECT b.*, c.categoryName "
-				+ "FROM book b LEFT JOIN category c ON b.categoryId = c.id";
-		try(Connection connection = DB.getConnection("student1");
-			 PreparedStatement statement = connection.prepareStatement(sql)){
-			statement.setInt(1, id);
-			try(ResultSet resultSet = statement.executeQuery()){
-				return resultSet.next()?getBookFrom(resultSet):null;
 			}
 		}
 	}

@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page %>
+<%@ page import="java.util.List, jspTest_DB.*" %>
+<%
+List<Book> list = BookDAO.findAll();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	div.container {width:600px; margin: 50px auto;}
+	table {border-collapse: collapse; width:100%;}
+	thead {text-weight: bold; text-align:center; background-color: lightgray;}
+	td {border:1px solid #eee; padding:4px;}
+</style>
 <body>
 <div class="container">
 
@@ -25,14 +34,14 @@
 	</thead>
 	
 	<tbody>
-		<% for() { %>
+		<% for (Book book : list) { %>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td><%= book.getId() %></td>
+			<td><%= book.getTitle() %></td>
+			<td><%= book.getAuthor() %></td>
+			<td><%= book.getCategoryName() %></td>
+			<td><%= book.getPrice() %></td>
+			<td><%= book.getPublisher() %></td>
 		</tr>
 		<% } %>
 	</tbody>
